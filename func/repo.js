@@ -1,41 +1,23 @@
-const { default: axios } = require("axios");
-const querystring = require("querystring");
-exports.getProfile = async (token, userId) => {
-  try {
-    const API_URL =
-      "https://cms-tg.nomis.cc/api/ton-twa-users/farm-data?user_id=" + userId;
-    const profile = await axios.get(API_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return profile.data;
-  } catch (error) {
-    throw error.response.status;
-  }
+const headersRequest = async (token) => {
+  const headers = {
+    headers: {
+      accept: "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "content-type": "application/json",
+      rawdata: token,
+      "sec-ch-ua":
+        '"Not/A)Brand";v="8", "Chromium";v="126", "Microsoft Edge";v="126", "Microsoft Edge WebView2";v="126"',
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": '"Windows"',
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      cookie:
+        "_ga=GA1.1.587369325.1722760309; _ga_KFJM6GVFXD=GS1.1.1722760309.1.1.1722761234.0.0.0",
+      Referer: "https://app.tabibot.com/",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+    },
+  };
+  return headers;
 };
-
-exports.getUserId = async (token) => {
-  try {
-    const API_URL = "https://cms-tg.nomis.cc/api/ton-twa-users/auth";
-    const userId = await axios.post(API_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return userId.data;
-  } catch (error) {
-    throw error.response.status;
-  }
-};
-
-exports.ExtractQuery = async (query) => {
-  if (!query) return;
-  const parsedQuery = querystring.parse(query);
-  // Decode the user JSON string
-  const user = JSON.parse(decodeURIComponent(parsedQuery.user));
-  // Extract the username and userId
-  const username = user.username;
-  const userId = user.id;
-  return { username, userId };
-};
+module.exports = { headersRequest };

@@ -1,15 +1,16 @@
-# nomis-bot
+# tabizoo-bot
 
-nomis-bot is a Telegram automation tool designed to help you manage and interact with [nomis bot](https://t.me/NomisAppBot/app?startapp=ref_XApS6ZNktC).
+tabizoo-bot is a Telegram automation tool designed to help you manage and interact with [tabizoo bot](https://t.me/tabizoobot/tabizoo?startapp=365cbu).
 
 <p align="center">
-  <img src="public/nomis.png" alt="cowtopia" width="300"/>
+  <img src="public/tabizoo.png" alt="cowtopia" width="300"/>
 </p>
 
 ### Features
 
 - Auto claim reward farming
-- Auto start farming
+- Auto level up
+- Auto claim sign in
 - support multi account
 
 ### How to use
@@ -19,7 +20,7 @@ you can clone repository and add your token authorization
 - Clone repository
 
 ```bash
-git clone https://github.com/dkzhen/nomis-bot.git
+git clone https://github.com/dkzhen/tabizoo-bot.git
 ```
 
 - add config.json on folder configs

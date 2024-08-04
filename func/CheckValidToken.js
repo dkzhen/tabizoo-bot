@@ -1,8 +1,7 @@
 const { default: axios } = require("axios");
 const { getTokens } = require("./GetTokens");
 const { configDotenv } = require("dotenv");
-const { getProfile } = require("./repo");
-const { AuthUserId } = require("./AuthUserId");
+const { headersRequest } = require("./repo");
 configDotenv();
 
 exports.validateToken = async () => {
@@ -11,8 +10,8 @@ exports.validateToken = async () => {
   const validToken = [];
   for (const token of tokens) {
     try {
-      const user_id = await AuthUserId(token.token);
-      await getProfile(token.token, user_id);
+      const headers = await headersRequest(token.token);
+      await axios.post("https://app.tabibot.com/api/user/sign-in", {}, headers);
       validToken.push(token);
     } catch (error) {
       console.log(`[ Error ] : token not valid , response code : ${error}`);
