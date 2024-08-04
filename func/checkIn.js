@@ -26,7 +26,7 @@ exports.checkIn = async () => {
           headers
         );
         console.log(
-          `[ Running ] : checking in ${check.data.user.checkInDate}...`
+          `[ Running ] : checking in ${checkIn.data.user.checkInDate}...`
         );
       }
     }
